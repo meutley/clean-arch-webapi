@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Matt Utley",
+    "classifications": [
+        "Common",
+        "Code"
+    ],
+    "identity": "meutley.clean.arch.webapi",
+    "name": ".NET Core 3.1 Web API with Clean Architecture / DDD and RavenDB",
+    "shortName": "clean-arch-webapi",
+    "sourceName": "SourceName",
+    "tags": {
+        "language": "C#",
+        "type": "item"
+    },
+    "sources": [
+        {
+            "exclude": [
+                ".git/**",
+                ".template.config/**",
+                ".vscode/**"
+            ]
+        }
+    ],
+    "postActions": [
+    {
+      	"condition": "(!skipRestore)",
+      	"description": "Restore NuGet packages required by this project.",
+      	"manualInstructions": [
+		{ "text": "Run 'dotnet restore'" }
+      	],
+        "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+		"continueOnError": true
+        }
+    ],
+    "guids": [
+        "2CC9A24B-2EA0-44C9-B8F1-35F8BCF506C8",
+        "8619C1F3-4DDB-4B2F-813C-D3866FD82A52",
+        "1F33A42B-0BF8-4E07-8833-39A525821D1A",
+        "4B4434A0-C5DE-4E8E-A42F-3CDA42EBED3E",
+        "EE3D3FE6-AD15-4ECE-8B5A-C67CF7EC6E10",
+        "850C92AF-DD9B-4533-8067-6AB42E7496B6",
+        "DDE76698-81B8-4EA4-9D4B-4C5940DF3582",
+        "BA64D892-79FA-401B-A9CD-5FD1FF08BC8A"
+    ]
+}
