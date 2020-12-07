@@ -27,7 +27,7 @@ namespace SourceName.Infrastructure.Services
                 throw new ArgumentNullException(token);
             }
             
-            var cacheKey = $"JWT_BLACKLIST_${token}";
+            var cacheKey = GetCacheKey(token);
             return _cache.AddOrUpdate(
                 cacheKey,
                 token,
@@ -42,9 +42,11 @@ namespace SourceName.Infrastructure.Services
                 return false;
             }
             
-            var cacheKey = $"JWT_BLACKLIST_${token}";
+            var cacheKey = GetCacheKey(token);
             var cachedValue = await _cache.Get(cacheKey);
             return cachedValue is object;
         }
+
+        private string GetCacheKey(string token) => $"JWT_BLACKLIST_${token}";
     }
 }
