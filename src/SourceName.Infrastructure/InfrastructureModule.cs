@@ -2,6 +2,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using SourceName.Application.Common.Interfaces;
+using SourceName.Infrastructure.Cache;
 using SourceName.Infrastructure.Services;
 
 namespace SourceName.Infrastructure
@@ -13,8 +14,10 @@ namespace SourceName.Infrastructure
             IConfiguration configuration
         )
         {
+            services.AddScoped<IJwtBlacklistService, JwtBlacklistService>();
             services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
             services.AddScoped<IUserPasswordService, UserPasswordService>();
+            services.AddCacheModule(configuration);
             services.AddPersistenceModule(configuration);
         }
     }

@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 using SourceName.Api.Core.Filters;
+using SourceName.Api.Core.Middleware;
 using SourceName.Api.Services;
 using SourceName.Application;
 using SourceName.Application.Common.Configuration;
@@ -124,6 +125,8 @@ namespace SourceName.Api
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

@@ -28,12 +28,10 @@ namespace SourceName.Application.Users.Queries
                 _repository = repository;
             }
             
-            public async Task<UserDto> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken)
-            {
-                return _mapper.Map<UserDto>(
+            public async Task<UserDto> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken) =>
+                _mapper.Map<UserDto>(
                     await _repository.GetByEmail(request.Email, cancellationToken)
                 );
-            }
         }
     }
 }

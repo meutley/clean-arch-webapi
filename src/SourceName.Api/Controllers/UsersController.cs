@@ -27,6 +27,16 @@ namespace SourceName.Api.Controllers
         }
 
         /// <summary>
+        /// Logs the current user out, expiring the auth token (JWT)
+        /// </summary>
+        [HttpPost("logout")]
+        public async Task<IActionResult> LogOut()
+        {
+            await _mediator.Send(new LogOutCommand());
+            return NoContent();
+        }
+
+        /// <summary>
         /// Registers a new User
         /// </summary>
         [AllowAnonymous]
@@ -35,6 +45,12 @@ namespace SourceName.Api.Controllers
         {
             await _mediator.Send(command);
             return NoContent();
+        }
+
+        [HttpGet("test-auth")]
+        public Task<IActionResult> TestAuth()
+        {
+            return Task.FromResult<IActionResult>(Ok("Authorized"));
         }
     }
 }
