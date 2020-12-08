@@ -13,12 +13,12 @@ namespace SourceName.Application.Users.Commands
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public class AuthenticateUserCommandHandler : IRequestHandler<AuthenticateUserCommand, string>
+        public class Handler : IRequestHandler<AuthenticateUserCommand, string>
         {
             private readonly IUserAuthenticationService _userAuthenticationService;
             private readonly IUserRepository _repository;
 
-            public AuthenticateUserCommandHandler(
+            public Handler(
                 IUserAuthenticationService userAuthenticationService,
                 IUserRepository repository
             )

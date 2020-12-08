@@ -10,12 +10,12 @@ namespace SourceName.Application.Users.Commands
 {
     public class LogOutCommand : IRequest<Unit>
     {
-        public class LogOutCommandHandler : IRequestHandler<LogOutCommand>
+        public class Handler : IRequestHandler<LogOutCommand>
         {
             private readonly ICurrentUserService _currentUserService;
             private readonly IJwtBlacklistService _jwtBlacklistService;
 
-            public LogOutCommandHandler(
+            public Handler(
                 ICurrentUserService currentUserService,
                 IJwtBlacklistService jwtBlacklistService
             )

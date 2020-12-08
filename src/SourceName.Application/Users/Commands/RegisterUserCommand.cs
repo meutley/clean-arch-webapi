@@ -15,13 +15,13 @@ namespace SourceName.Application.Users.Commands
         public string DisplayName { get; set; }
         public string Password { get; set; }
 
-        public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
+        public class Handler : IRequestHandler<RegisterUserCommand>
         {
             private readonly IMapper _mapper;
             private readonly IUserPasswordService _passwordService;
             private readonly IUserRepository _repository;
             
-            public RegisterUserCommandHandler(
+            public Handler(
                 IMapper mapper,
                 IUserPasswordService passwordService,
                 IUserRepository repository

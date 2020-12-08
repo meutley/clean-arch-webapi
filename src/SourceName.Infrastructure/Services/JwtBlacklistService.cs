@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
+
 using Microsoft.Extensions.Options;
+
 using SourceName.Application.Common.Configuration;
 using SourceName.Application.Common.Interfaces;
 
@@ -47,6 +49,6 @@ namespace SourceName.Infrastructure.Services
             return cachedValue is object;
         }
 
-        private string GetCacheKey(string token) => $"JWT_BLACKLIST_${token}";
+        private string GetCacheKey(string token) => $"JWT_BLACKLIST_{token}";
     }
 }
