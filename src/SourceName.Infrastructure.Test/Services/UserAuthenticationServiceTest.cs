@@ -15,7 +15,11 @@ namespace SourceName.Infrastructure.Services.Test
         private const string PASSWORD = "PASSWORD";
         private const string TOKEN = "TOKEN";
         private static readonly TimeSpan TOKEN_LIFETIME = TimeSpan.FromSeconds(1800);
+        #if (UseRaven)
         private const string USER_ID = "USER_ID";
+        #else
+        private const int USER_ID = 123;
+        #endif
 
         private readonly AuthenticationConfiguration _authenticationConfiguration;
         private readonly Mock<IUserPasswordService> _userPasswordServiceMock;

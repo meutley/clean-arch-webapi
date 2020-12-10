@@ -43,7 +43,7 @@ namespace SourceName.Infrastructure.Services
             var key = Encoding.ASCII.GetBytes(_authenticationConfiguration.TokenSecret);
 
             var allClaims = new List<Claim>();
-            allClaims.Add(new Claim(ClaimTypes.NameIdentifier, entity.Id));
+            allClaims.Add(new Claim(ClaimTypes.NameIdentifier, entity.Id.ToString()));
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using SourceName.Domain.Common.Interfaces;
 namespace SourceName.Infrastructure.Postgres.Repositories
 {
     public abstract class RepositoryBase<TKey, TEntity> : IRepository<TKey, TEntity>
-        where TKey : class
+        where TKey : struct, IComparable, IComparable<TKey>, IEquatable<TKey>
         where TEntity : BaseEntity<TKey>
     {
         protected readonly SourceNameContext _context;
@@ -24,7 +25,7 @@ namespace SourceName.Infrastructure.Postgres.Repositories
             {
                 query = query.Include(includePath);
             }
-            return query.SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
+            return query.SingleOrDefaultAsync(x => x.Id.Equals(id), cancellationToken);
         }
 
         public virtual async Task Insert(TEntity entity, CancellationToken cancellationToken)

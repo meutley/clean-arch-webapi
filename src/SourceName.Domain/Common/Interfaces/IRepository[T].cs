@@ -6,7 +6,6 @@ using SourceName.Domain.Common.Entities;
 namespace SourceName.Domain.Common.Interfaces
 {
     public interface IRepository<TKey, TEntity>
-        where TKey : class
         where TEntity : BaseEntity<TKey>
     {
         Task<TEntity> GetById(TKey id, string includePaths = "", CancellationToken cancellationToken = default);

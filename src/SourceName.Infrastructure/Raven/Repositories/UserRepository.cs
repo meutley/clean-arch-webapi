@@ -9,6 +9,7 @@ using SourceName.Infrastructure.Raven.Indexes;
 
 namespace SourceName.Infrastructure.Raven.Repositories
 {
+    #if (UseRaven)
     public class UserRepository : RepositoryBase<string, User>, IUserRepository
     {
         public UserRepository(IAsyncDocumentSession session) : base(session) { }
@@ -22,4 +23,5 @@ namespace SourceName.Infrastructure.Raven.Repositories
                 );
         }
     }
+    #endif
 }

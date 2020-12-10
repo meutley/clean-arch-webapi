@@ -7,7 +7,7 @@ using SourceName.Domain.Users;
 
 namespace SourceName.Infrastructure.Postgres.Repositories
 {
-    public class UserRepository : RepositoryBase<string, User>, IUserRepository
+    public class UserRepository : RepositoryBase<int, User>, IUserRepository
     {
         public UserRepository(SourceNameContext context) : base(context) { }
 

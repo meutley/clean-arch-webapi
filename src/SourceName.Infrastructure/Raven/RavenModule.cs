@@ -16,6 +16,7 @@ namespace SourceName.Infrastructure.Raven
     {
         internal static void AddRavenModule(this IServiceCollection services)
         {
+            #if (UseRaven)
             services.AddRavenDbDocStore(opts =>
             {
                 opts.BeforeInitializeDocStore = docStore =>
@@ -28,6 +29,7 @@ namespace SourceName.Infrastructure.Raven
             services.AddScoped<IUserRepository, UserRepository>();
 
             CreateIndexes(services);
+            #endif
         }
 
         private static void CreateIndexes(IServiceCollection services)
