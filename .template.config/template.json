@@ -19,9 +19,62 @@
                 ".git/**",
                 ".template.config/**",
                 ".vscode/**"
+            ],
+            "modifiers": [
+                {
+                    "condition": "(UseRaven)",
+                    "exclude": ["**/SourceName.Infrastructure/Pg/**"]
+                },
+                {
+                    "condition": "(UsePg)",
+                    "exclude": ["**/SourceName.Infrastructure/Raven/**"]
+                }
             ]
         }
     ],
+    "SpecialCustomOperations": {
+        "**/*.csproj": {
+            "operations": [
+                {
+                    "type": "conditional",
+                    "configuration": {
+                        "actionableIf": [ "<!--#if" ],
+                        "actionableElse": [ "#else", "<!--#else" ],
+                        "actionableElseif": [ "#elseif", "<!--#elseif" ],
+                        "endif": [ "#endif", "<!--#endif" ],
+                        "trim" : "true",
+                        "wholeLine": "true"
+                    }
+                }
+            ]
+        }
+    },
+    "symbols": {
+        "DbProvider": {
+            "type": "parameter",
+            "datatype": "choice",
+            "choices": [
+                {
+                    "choice": "Raven",
+                    "description": "Use RavenDB"
+                },
+                {
+                    "choice": "Postgres",
+                    "description": "Use PostgreSQL"
+                }
+            ],
+            "defaultValue": "Postgres",
+            "isRequired": true
+        },
+        "UseRaven": {
+            "type": "computed",
+            "value": "(DbProvider == \"Raven\")"
+        },
+        "UsePg": {
+            "type": "computed",
+            "value": "(DbProvider == \"Postgres\")"
+        }
+    },
     "postActions": [
     {
       	"condition": "(!skipRestore)",

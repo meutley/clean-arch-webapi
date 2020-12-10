@@ -3,33 +3,26 @@ using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+#if (UseRaven)
 using SourceName.Infrastructure.Raven;
+#elif (UsePg)
+using SourceName.Infrastructure.Postgres;
+#endif
 
 namespace SourceName.Infrastructure
 {
     internal static class PersistenceModule
     {
-        private const string RAVEN = "RAVEN";
-        
         internal static void AddPersistenceModule(
             this IServiceCollection services,
             IConfiguration configuration
         )
         {
-            var databaseProvider = configuration.GetValue("Database:Provider", string.Empty);
-            if (string.IsNullOrWhiteSpace(databaseProvider))
-            {
-                throw new ArgumentNullException(nameof(databaseProvider));
-            }
-
-            switch (databaseProvider.ToUpper())
-            {
-                case RAVEN:
-                    services.AddRavenModule();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(databaseProvider));
-            }
+            #if (UseRaven)
+            services.AddRavenModule();
+            #elif (UsePg)
+            services.AddPostgresModule(configuration);
+            #endif
         }
     }
 }
