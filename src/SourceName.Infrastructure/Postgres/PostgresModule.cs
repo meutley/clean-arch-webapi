@@ -11,7 +11,7 @@ namespace SourceName.Infrastructure.Postgres
     {
         public static void AddPostgresModule(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetValue<string>("Database:ConnectionString");
+            var connectionString = configuration.GetConnectionString("SourceNameDb");
             services.AddDbContext<SourceNameContext>(options => options.UseNpgsql(connectionString));
 
             services.AddScoped<IUserRepository, UserRepository>();
