@@ -18,11 +18,11 @@ namespace SourceName.Infrastructure
             IConfiguration configuration
         )
         {
-            #if (UseRaven)
+#if (UseRaven)
             services.AddRavenModule();
-            #elif (UsePg)
+#elif (UsePg)
             services.AddPostgresModule(configuration);
-            #endif
+#endif
         }
     }
 }

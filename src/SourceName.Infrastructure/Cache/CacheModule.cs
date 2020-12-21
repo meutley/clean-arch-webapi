@@ -9,9 +9,11 @@ namespace SourceName.Infrastructure.Cache
     {
         public static void AddCacheModule(this IServiceCollection services, IConfiguration configuration)
         {
-            #if DEBUG
+//-:cnd:noEmit
+#if DEBUG
             services.AddSingleton<IApplicationCache, DebugCache>();
-            #endif
+#endif
+//+:cnd:noEmit
         }
     }
 }

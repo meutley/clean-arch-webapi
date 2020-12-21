@@ -10,12 +10,24 @@ namespace SourceName.Api.Services
     public class CurrentUserService : ICurrentUserService
     {
         public string Token { get; }
+#if (UseRaven)
         public string UserId { get; }
+#else
+        public int? UserId { get; }
+#endif
         
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
             Token = httpContextAccessor.HttpContext?.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-            UserId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!string.IsNullOrWhiteSpace(userId))
+            {
+#if (UseRaven)
+                UserId = userId;
+#else
+                UserId = int.Parse(userId);
+#endif
+            }
         }
     }
 }

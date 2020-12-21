@@ -6,7 +6,7 @@
         "Code"
     ],
     "identity": "meutley.clean.arch.webapi",
-    "name": ".NET Core 3.1 Web API with Clean Architecture / DDD and RavenDB",
+    "name": ".NET Core 3.1 Web API with Clean Architecture / DDD and RavenDB or PostgreSQL",
     "shortName": "clean-arch-webapi",
     "sourceName": "SourceName",
     "tags": {
@@ -18,7 +18,9 @@
             "exclude": [
                 ".git/**",
                 ".template.config/**",
-                ".vscode/**"
+                ".vscode/**",
+                "**/[Bb]in/**",
+                "**/[Oo]bj/**"
             ],
             "modifiers": [
                 {
